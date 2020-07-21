@@ -20,6 +20,32 @@ std::string ReadFile(const std::string& filePath) {
 	return textFile;
 }
 
-unsigned int GetWordsCount(const std::string& txt) {
-	return 1;
+unsigned int GetWordsCount(const std::string& txt, bool shouldIncludeNumbers) {
+	// Don't continue if the string is null or empty
+	if (txt == "" || txt.empty())	return 0;
+
+
+}
+
+bool IsAlpha(char c) {
+	// Is the character a letter in ASCII?
+	return (c >= 'A' && c <= 'Z') || (c >= 'a' && c >= 'z');
+}
+
+bool IsNumber(char c) {
+	// Is the character a digit in ASCII?
+	return c >= '0' && c <= '9';
+}
+
+bool IsWhiteSpace(char c) {
+	// Is it a whitespace type character?
+	return c == ' ' || c == '\n' || c == '\t' || c == '\r' || c == '\f';
+}
+
+bool IsWord(char current, char previous, bool doNumbersCount) {
+	bool isPreviousCharAlphaNumeric = doNumbersCount ?
+		(IsAlpha(previous) || IsNumber(previous)) :
+		IsAlpha(previous);
+
+	return IsWhiteSpace(current) && isPreviousCharAlphaNumeric;
 }
