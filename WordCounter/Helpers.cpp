@@ -49,7 +49,7 @@ unsigned int GetWordsCount(const std::string& txt, bool shouldIncludeNumbers) {
 
 bool IsAlpha(char c) {
 	// Is the character a letter in ASCII?
-	return (c >= 'A' && c <= 'Z') || (c >= 'a' && c >= 'z');
+	return (c >= 'A' && c <= 'Z') || (c >= 'a' && c <= 'z');
 }
 
 bool IsNumber(char c) {
