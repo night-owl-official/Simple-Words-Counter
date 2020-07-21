@@ -23,7 +23,7 @@ std::string ReadFile(const std::string& filePath);
 /// <param name="txt">The text to count words from</param>
 /// <param name="shouldIncludeNumbers">Should numbers be counted as words?</param>
 /// <returns>The number of words in the text</returns>
-unsigned int GetWordsCount(const std::string& txt, bool shouldIncludeNumbers);
+unsigned int GetWordsCount(const std::string& txt, bool shouldIncludeNumbers=true);
 
 /// <summary>
 /// Takes a character and returns whether or not it's a letter

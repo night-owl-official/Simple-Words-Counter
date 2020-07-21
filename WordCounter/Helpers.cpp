@@ -24,7 +24,27 @@ unsigned int GetWordsCount(const std::string& txt, bool shouldIncludeNumbers) {
 	// Don't continue if the string is null or empty
 	if (txt == "" || txt.empty())	return 0;
 
+	unsigned int count = 0;
+	char currentChar = ' ';
+	char previousChar = ' ';
 
+	// Loop through the entire string
+	size_t i = 0;
+	while (txt[i] != '\0') {
+		// Current character is this character
+		currentChar = txt[i];
+
+		// Increase the count if it's a word
+		if (IsWord(currentChar, previousChar, shouldIncludeNumbers))	count++;
+
+		// Previous character becomes the current one
+		previousChar = currentChar;
+
+		// Move to the next character
+		i++;
+	}
+
+	return count;
 }
 
 bool IsAlpha(char c) {
@@ -43,9 +63,12 @@ bool IsWhiteSpace(char c) {
 }
 
 bool IsWord(char current, char previous, bool doNumbersCount) {
-	bool isPreviousCharAlphaNumeric = doNumbersCount ?
-		(IsAlpha(previous) || IsNumber(previous)) :
-		IsAlpha(previous);
+	// Numbers might be included as words depending on the given parameter
+	bool isCurrentCharAlphaNumeric = doNumbersCount ?
+		(IsAlpha(current) || IsNumber(current)) :
+		IsAlpha(current);
 
-	return IsWhiteSpace(current) && isPreviousCharAlphaNumeric;
+	// When the previous character is some type of whitespace and
+	// the current one is alphanumeric, then it's a word
+	return IsWhiteSpace(previous) && isCurrentCharAlphaNumeric;
 }
